@@ -1,0 +1,23 @@
+{
+  "name": "spirit-dev/php-sonarqube-api",
+  "type": "library",
+  "description": "SonarQube API client for php projects",
+  "homepage": "https://github.com/spirit-dev/php-sonarqube-api",
+  "keywords": ["sonar", "sonarqube", "api"],
+  "license": "GPL v3",
+  "authors": [
+    {
+      "name": "Jean Bordat",
+      "email": "bordat.jean@gmail.com",
+      "homepage": "http://jean.bordat.me/"
+    }
+  ],
+  "require": {
+    "php":                ">=5.3.2",
+    "ext-curl":           "*",
+    "kriswallsmith/buzz": ">=0.7"
+  },
+  "autoload": {
+    "psr-0": { "SonarQube\\": "lib/" }
+  }
+}
