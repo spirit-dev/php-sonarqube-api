@@ -23,7 +23,7 @@ interface ProjectsInterface {
 
     /**
      * COMMENT
-     * Type POST
+     * Type GET
      * Parameters
      *      Optional
      *          - desc          Load project description - Possible values: true false
