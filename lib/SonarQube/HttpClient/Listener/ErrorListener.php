@@ -1,4 +1,17 @@
 <?php
+/**
+ * Copyright (c) 2016. Spirit-Dev
+ *    _             _
+ *   /_`_  ._._/___/ | _
+ * . _//_//// /   /_.'/_'|/
+ *    /
+ *
+ * By Jean Bordat ( Twitter @Ji_Bay_ )
+ * Since 2K10 until today
+ * @mail <bordat.jean@gmail.com>
+ *
+ * hex: 53 70 69 72 69 74 2d 44 65 76
+ */
 
 namespace SonarQube\HttpClient\Listener;
 
@@ -8,19 +21,36 @@ use Buzz\Message\RequestInterface;
 use SonarQube\Exception\ErrorException;
 use SonarQube\Exception\RuntimeException;
 
+/**
+ * Class ErrorListener
+ * @package SonarQube\HttpClient\Listener
+ */
 class ErrorListener implements ListenerInterface {
 
-    // TODO Comment
-
+    /**
+     * @var array
+     */
     private $options;
 
+    /**
+     * ErrorListener constructor.
+     * @param array $options
+     */
     public function __construct(array $options) {
         $this->options = $options;
     }
 
+    /**
+     * @param RequestInterface $request
+     */
     public function preSend(RequestInterface $request) {
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param MessageInterface $response
+     * @throws ErrorException
+     */
     public function postSend(RequestInterface $request, MessageInterface $response) {
         if ($response->isClientError() || $response->isServerError()) {
             $content = $response->getContent();
@@ -45,6 +75,10 @@ class ErrorListener implements ListenerInterface {
         }
     }
 
+    /**
+     * @param $message
+     * @return string
+     */
     protected function parseMessage($message) {
         $string = $message;
 
