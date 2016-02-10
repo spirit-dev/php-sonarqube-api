@@ -1,4 +1,17 @@
 <?php
+/**
+ * Copyright (c) 2016. Spirit-Dev
+ *    _             _
+ *   /_`_  ._._/___/ | _
+ * . _//_//// /   /_.'/_'|/
+ *    /
+ *
+ * By Jean Bordat ( Twitter @Ji_Bay_ )
+ * Since 2K10 until today
+ * @mail <bordat.jean@gmail.com>
+ *
+ * hex: 53 70 69 72 69 74 2d 44 65 76
+ */
 
 namespace SonarQube\Api;
 
@@ -23,31 +36,31 @@ abstract class AbstractApi {
     protected function get($path, array $parameters = array(), $requestHeaders = array()) {
         $response = $this->client->getHttpClient()->get($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
+        return json_decode($response->getContent(), true);
     }
 
     protected function post($path, array $parameters = array(), $requestHeaders = array()) {
         $response = $this->client->getHttpClient()->post($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
+        return json_decode($response->getContent(), true);
     }
 
     protected function patch($path, array $parameters = array(), $requestHeaders = array()) {
         $response = $this->client->getHttpClient()->patch($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
+        return json_decode($response->getContent(), true);
     }
 
     protected function put($path, array $parameters = array(), $requestHeaders = array()) {
         $response = $this->client->getHttpClient()->put($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
+        return json_decode($response->getContent(), true);
     }
 
     protected function delete($path, array $parameters = array(), $requestHeaders = array()) {
         $response = $this->client->getHttpClient()->delete($path, $parameters, $requestHeaders);
 
-        return $response->getContent();
+        return json_decode($response->getContent(), true);
     }
 
     protected function encodePath($path) {
