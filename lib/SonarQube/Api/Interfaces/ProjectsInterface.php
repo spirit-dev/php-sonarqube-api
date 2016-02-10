@@ -22,7 +22,7 @@ namespace SonarQube\Api\Interfaces;
 interface ProjectsInterface {
 
     /**
-     * COMMENT
+     * Search for projects
      * Type GET
      * Parameters
      *      Optional
@@ -61,6 +61,6 @@ interface ProjectsInterface {
      *
      * @return mixed
      */
-    public function delete();
+    public function deleteProject();
 
 }
