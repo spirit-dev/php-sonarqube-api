@@ -143,6 +143,7 @@ class Client {
             case 'profiles':
                 break;
             case 'projects':
+                $api = new Api\Projects($this);
                 break;
             case 'properties':
                 break;
@@ -155,6 +156,7 @@ class Client {
             case 'rules':
                 break;
             case 'server':
+                $api = new Api\Server($this);
                 break;
             case 'sources':
                 break;
@@ -169,6 +171,7 @@ class Client {
             case 'user_properties':
                 break;
             case 'users':
+                $api = new Api\Users($this);
                 break;
             case 'webservices':
                 break;
