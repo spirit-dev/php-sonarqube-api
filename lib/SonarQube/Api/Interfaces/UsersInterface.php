@@ -15,6 +15,10 @@
 
 namespace SonarQube\Api\Interfaces;
 
+/**
+ * Interface UsersInterface
+ * @package SonarQube\Api\Interfaces
+ */
 interface UsersInterface {
 
     /**
@@ -30,9 +34,14 @@ interface UsersInterface {
      *          - password              User password
      *          - password_confirmation Must be the same value as "password"
      *
+     * @param $login
+     * @param $name
+     * @param $password
+     * @param null $email
+     * @param null $scmAccount
      * @return mixed
      */
-    public function create();
+    public function create($login, $name, $password, $email = null, $scmAccount = null);
 
     /**
      * Deactivate a user. Requires Administer System permission
@@ -41,9 +50,10 @@ interface UsersInterface {
      *      Required
      *          - login                 User login
      *
+     * @param $login
      * @return mixed
      */
-    public function deactivate();
+    public function deactivate($login);
 
     /**
      * Get a list of users
@@ -53,9 +63,11 @@ interface UsersInterface {
      *          - includeDeactivated    Include deactivated users
      *          - logins                Comma-separated list of user logins
      *
+     * @param array $logins
+     * @param bool $includeDeactivated
      * @return mixed
      */
-    public function search();
+    public function search(array $logins, $includeDeactivated = false);
 
     /**
      * Update a user. Requires Administer System permission
@@ -70,8 +82,13 @@ interface UsersInterface {
      *          - password              User password
      *          - password_confirmation Must be the same value as "password"
      *
+     * @param $login
+     * @param $name
+     * @param $password
+     * @param null $email
+     * @param null $scmAccount
      * @return mixed
      */
-    public function update();
+    public function update($login, $name, $password, $email = null, $scmAccount = null);
 
 }

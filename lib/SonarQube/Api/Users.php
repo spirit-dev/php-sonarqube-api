@@ -24,31 +24,105 @@ use SonarQube\Api\Interfaces\UsersInterface;
 class Users extends AbstractApi implements UsersInterface {
 
     /**
-     * @inheritDoc
+     * Create a user. Requires Administer System permission
+     * Type POST
+     * Parameters
+     *      Optional
+     *          - email                 User email
+     *          - scm_account           SCM accounts. This parameter has been added in 5.1
+     *      Required
+     *          - login                 User login
+     *          - name                  User name
+     *          - password              User password
+     *          - password_confirmation Must be the same value as "password"
+     *
+     * @param $login
+     * @param $name
+     * @param $password
+     * @param null $email
+     * @param null $scmAccount
+     * @return mixed
      */
-    public function create() {
-        // TODO: Implement create() method.
+    public function create($login, $name, $password, $email = null, $scmAccount = null) {
+        return $this->post('users/create', array(
+            "login" => $login,
+            "name" => $name,
+            "password" => $password,
+            "password_confirmation" => $password,
+            "email" => $email,
+            "scm_account" => $scmAccount
+        ));
     }
 
     /**
-     * @inheritDoc
+     * Deactivate a user. Requires Administer System permission
+     * Type POST
+     * Parameters
+     *      Required
+     *          - login                 User login
+     *
+     * @param $login
+     * @return mixed
      */
-    public function deactivate() {
-        // TODO: Implement deactivate() method.
+    public function deactivate($login) {
+        return $this->post('users/deactivate', array(
+            "login" => $login
+        ));
     }
 
     /**
-     * @inheritDoc
+     * Get a list of users
+     * Type GET
+     * Parameters
+     *      Optional
+     *          - includeDeactivated    Include deactivated users
+     *          - logins                Comma-separated list of user logins
+     *
+     * @param array $logins
+     * @param bool $includeDeactivated
+     * @return mixed
      */
-    public function search() {
-        // TODO: Implement search() method.
+    public function search(array $logins, $includeDeactivated = false) {
+
+        $datas = "";
+        for ($i = 0; $i < count($logins); $i++) {
+            $datas .= $logins[$i] . ",";
+        }
+
+        return $this->get('users/search', array(
+            'logins' => $datas,
+            'includeDeactivated' => $includeDeactivated ? 'true' : 'false'
+        ));
     }
 
     /**
-     * @inheritDoc
+     * Update a user. Requires Administer System permission
+     * Type POST
+     * Parameters
+     *      Optional
+     *          - email                 User email
+     *          - scm_account           SCM accounts. This parameter has been added in 5.1
+     *      Required
+     *          - login                 User login
+     *          - name                  User name
+     *          - password              User password
+     *          - password_confirmation Must be the same value as "password"
+     *
+     * @param $login
+     * @param $name
+     * @param $password
+     * @param null $email
+     * @param null $scmAccount
+     * @return mixed
      */
-    public function update() {
-        // TODO: Implement update() method.
+    public function update($login, $name, $password, $email = null, $scmAccount = null) {
+        return $this->post('users/create', array(
+            "login" => $login,
+            "name" => $name,
+            "password" => $password,
+            "password_confirmation" => $password,
+            "email" => $email,
+            "scm_account" => $scmAccount
+        ));
     }
-
 }
