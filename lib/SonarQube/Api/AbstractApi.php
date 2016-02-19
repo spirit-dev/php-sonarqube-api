@@ -16,6 +16,7 @@
 namespace SonarQube\Api;
 
 use SonarQube\Client;
+use SonarQube\Exception\MissingArgumentException;
 
 abstract class AbstractApi {
 
@@ -67,5 +68,13 @@ abstract class AbstractApi {
         $path = rawurlencode($path);
 
         return str_replace('.', '%2E', $path);
+    }
+
+    protected function checkParamIsSet($params, array $necessary) {
+        for ($i = 0; $i < count($necessary); $i++) {
+            if (!array_key_exists($necessary[$i], $params)) {
+                throw new MissingArgumentException($necessary[$i]);
+            }
+        }
     }
 }

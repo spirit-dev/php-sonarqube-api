@@ -36,22 +36,14 @@ class Users extends AbstractApi implements UsersInterface {
      *          - password              User password
      *          - password_confirmation Must be the same value as "password"
      *
-     * @param $login
-     * @param $name
-     * @param $password
-     * @param null $email
-     * @param null $scmAccount
+     * @param array $parameters
      * @return mixed
+     * @throws \SonarQube\Exception\MissingArgumentException
      */
-    public function create($login, $name, $password, $email = null, $scmAccount = null) {
-        return $this->post('users/create', array(
-            "login" => $login,
-            "name" => $name,
-            "password" => $password,
-            "password_confirmation" => $password,
-            "email" => $email,
-            "scm_account" => $scmAccount
-        ));
+    public function create(array $parameters = array()) {
+        $this->checkParamIsSet($parameters, array("login", "name", "password", "password_confirmation"));
+
+        return $this->post('users/create', $parameters);
     }
 
     /**
@@ -102,27 +94,20 @@ class Users extends AbstractApi implements UsersInterface {
      *      Optional
      *          - email                 User email
      *          - scm_account           SCM accounts. This parameter has been added in 5.1
+     *          - active                User account status
      *      Required
      *          - login                 User login
      *          - name                  User name
      *          - password              User password
      *          - password_confirmation Must be the same value as "password"
      *
-     * @param $login
-     * @param $name
-     * @param $password
-     * @param null $email
-     * @param null $scmAccount
+     * @param array $parameters
      * @return mixed
+     * @throws \SonarQube\Exception\MissingArgumentException
      */
-    public function update($login, $name, $password, $email = null, $scmAccount = null) {
-        return $this->post('users/create', array(
-            "login" => $login,
-            "name" => $name,
-            "password" => $password,
-            "password_confirmation" => $password,
-            "email" => $email,
-            "scm_account" => $scmAccount
-        ));
+    public function update(array $parameters = array()) {
+        $this->checkParamIsSet($parameters, array("login", "name", "password", "password_confirmation"));
+
+        return $this->post('users/create', $parameters);
     }
 }

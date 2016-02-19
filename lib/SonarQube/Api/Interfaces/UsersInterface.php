@@ -34,14 +34,10 @@ interface UsersInterface {
      *          - password              User password
      *          - password_confirmation Must be the same value as "password"
      *
-     * @param $login
-     * @param $name
-     * @param $password
-     * @param null $email
-     * @param null $scmAccount
+     * @param array $parameters
      * @return mixed
      */
-    public function create($login, $name, $password, $email = null, $scmAccount = null);
+    public function create(array $parameters);
 
     /**
      * Deactivate a user. Requires Administer System permission
@@ -82,13 +78,9 @@ interface UsersInterface {
      *          - password              User password
      *          - password_confirmation Must be the same value as "password"
      *
-     * @param $login
-     * @param $name
-     * @param $password
-     * @param null $email
-     * @param null $scmAccount
+     * @param array $parameters
      * @return mixed
      */
-    public function update($login, $name, $password, $email = null, $scmAccount = null);
+    public function update(array $parameters);
 
 }
