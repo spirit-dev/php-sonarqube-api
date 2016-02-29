@@ -139,6 +139,7 @@ class Client {
             case 'metrics':
                 break;
             case 'permissions':
+                $api = new Api\Permissions($this);
                 break;
             case 'profiles':
                 break;
