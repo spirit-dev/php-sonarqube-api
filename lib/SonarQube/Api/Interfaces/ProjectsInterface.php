@@ -34,9 +34,10 @@ interface ProjectsInterface {
      *          - versions      Load version - Possible values: true false
      *          - views         Load views and sub-views. Ignored if the parameter key is set - Possible values: true false
      *
+     * @param array $parameters
      * @return mixed
      */
-    public function search();
+    public function search(array $parameters = array());
 
     /**
      * Provision a project. Requires Provision Projects permission
@@ -48,9 +49,10 @@ interface ProjectsInterface {
      *          - key           Key of the project
      *          - name          Name of the project
      *
+     * @param array $parameters
      * @return mixed
      */
-    public function create();
+    public function create(array $parameters = array());
 
     /**
      * Delete a project. Requires Administer System permission
@@ -59,8 +61,9 @@ interface ProjectsInterface {
      *      Required
      *          - id          id or key of the resource (ie: component)
      *
+     * @param array $parameters
      * @return mixed
      */
-    public function deleteProject();
+    public function deleteProject(array $parameters = array());
 
 }

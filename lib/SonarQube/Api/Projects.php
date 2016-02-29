@@ -26,22 +26,24 @@ class Projects extends AbstractApi implements ProjectsInterface {
     /**
      * @inheritDoc
      */
-    public function search() {
-        // TODO: Implement search() method.
+    public function search(array $parameters = array()) {
+        return $this->get('projects/index', $parameters);
     }
 
     /**
      * @inheritDoc
      */
-    public function create() {
-        // TODO: Implement create() method.
+    public function create(array $parameters = array()) {
+        $this->checkParamIsSet($parameters, array("key", "name"));
+        return $this->post('projects/create', $parameters);
     }
 
     /**
      * @inheritDoc
      */
-    public function deleteProject() {
-        // TODO: Implement deleteProject() method.
+    public function deleteProject(array $parameters = array()) {
+        $this->checkParamIsSet($parameters, array("id"));
+        return $this->post('projects/destroy', $parameters);
     }
 
 }
