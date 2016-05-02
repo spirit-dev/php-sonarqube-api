@@ -131,6 +131,7 @@ class Client {
             case 'issue_filters':
                 break;
             case 'issues':
+                $api = new Api\Issues($this);
                 break;
             case 'languages':
                 break;
