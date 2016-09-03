@@ -25,10 +25,15 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 
 General API Usage
 -----------------
+
 ```php
 $client = new \SonarQube\Client('http://sonar.domain.com/api/', 'username', 'password'); // change here
-$authentication = $client-->api('authentication')->validate();
+$authentication = $client->api('authentication')->validate();
+$projects = $client->projects->search(['search'=>'XYZ']);
+$measures = $client->measures->component(['componentKey'=>'ABC.XYZ','metricKeys'=>'ncloc_language_distribution,complexity,violations']);
 ```
+
+Calls can be made either via `$client->api('apiSection')->endpoint()` or as a property: `$client->apiSection->endpoint()`. The two syntaxes work identically.
 
 Contributing
 ------------

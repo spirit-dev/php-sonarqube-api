@@ -22,6 +22,37 @@ use SonarQube\HttpClient\HttpClient;
 use SonarQube\HttpClient\HttpClientInterface;
 use SonarQube\HttpClient\Listener\AuthListener;
 
+/**
+ * @property object action_plans
+ * @property \SonarQube\Api\Interfaces\AuthenticationInterface authentication
+ * @property object coverage
+ * @property object duplications
+ * @property object events
+ * @property object favorites
+ * @property object issue_filters
+ * @property object issues
+ * @property object languages
+ * @property object manual_measures
+ * @property \SonarQube\Api\Interfaces\MeasuresInterface measures
+ * @property object metrics
+ * @property object permissions
+ * @property object profiles
+ * @property \SonarQube\Api\Interfaces\ProjectsInterface projects
+ * @property object properties
+ * @property object qualitygates
+ * @property object qualityprofiles
+ * @property object resources
+ * @property object rules
+ * @property object server
+ * @property object sources
+ * @property object system
+ * @property object tests
+ * @property object timemachine
+ * @property object updatecenter
+ * @property object user_properties
+ * @property object users
+ * @property object webservices
+ */
 class Client {
 
     // TODO Comment
@@ -114,7 +145,6 @@ class Client {
     public function api($name) {
 
         switch ($name) {
-
             case 'action_plans':
                 break;
             case 'authentication':
@@ -136,6 +166,9 @@ class Client {
             case 'languages':
                 break;
             case 'manual_measures':
+                break;
+            case 'measures':
+                $api = new Api\Measures($this);
                 break;
             case 'metrics':
                 break;
@@ -180,6 +213,10 @@ class Client {
 
             default:
                 throw new \InvalidArgumentException('Invalid endpoint: "' . $name . '".');
+        }
+
+        if (!isset($api)) {
+            throw new \InvalidArgumentException('Endpoint not yet supported: "' . $name . '".');
         }
 
         return $api;
