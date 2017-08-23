@@ -65,6 +65,8 @@ class ErrorListener implements ListenerInterface {
             $errorMessage = null;
             if (isset($content['error'])) {
                 $errorMessage = implode("\n", $content['error']);
+            } elseif (isset($content['errors'])) {
+                $errorMessage = $this->parseMessage($content['errors']);
             } elseif (isset($content['message'])) {
                 $errorMessage = $this->parseMessage($content['message']);
             } else {
